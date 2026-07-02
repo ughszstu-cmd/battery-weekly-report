@@ -4,12 +4,13 @@
 
 ## 📱 在线访问
 
-**最新周报：** https://YOUR_USERNAME.github.io/battery-weekly-report/
+**最新周报：** https://ughszstu-cmd.github.io/battery-weekly-report/
 
 ## 📂 历史周报
 
 | 日期 | 链接 |
 |------|------|
+| 2026-07-02 | [查看](reports/20260702.html) |
 | 2026-06-29 | [查看](reports/20260629.html) |
 
 ## 🚀 更新周报
