@@ -389,7 +389,11 @@ h3.sub-head{font-family:var(--font-display);font-size:1.1rem;font-weight:600;mar
 </button>
 
 <script>
-document.querySelectorAll('.section-tab').forEach(tab=>{tab.addEventListener('click',()=>{document.querySelectorAll('.section-tab').forEach(t=>t.setAttribute('aria-selected','false'));document.querySelectorAll('.section-panel').forEach(p=>p.hidden=true);tab.setAttribute('aria-selected','true');document.getElementById(tab.dataset.panel).hidden=false;});});function exportPDF(){const panels=document.querySelectorAll('.section-panel');const btn=document.querySelector('.pdf-export-btn');const activePanel=document.querySelector('.section-panel:not([hidden])');const activeTab=document.querySelector('.section-tab[aria-selected="true"]');panels.forEach(p=>p.hidden=false);btn.style.display='none';document.querySelector('.section-tabs').style.display='none';requestAnimationFrame(()=>{window.print();setTimeout(()=>{panels.forEach(p=>{if(p!==activePanel)p.hidden=true;});btn.style.display='';document.querySelector('.section-tabs').style.display='';if(activeTab)activeTab.setAttribute('aria-selected','true');},300);});}
+document.querySelectorAll('.section-tab').forEach(tab=>{tab.addEventListener('click',()=>{document.querySelectorAll('.section-tab').forEach(t=>t.setAttribute('aria-selected','false'));document.querySelectorAll('.section-panel').forEach(p=>p.hidden=true);tab.setAttribute('aria-selected','true');document.getElementById(tab.dataset.panel).hidden=false;});});
+var _pa=null;
+window.addEventListener('beforeprint',function(){_pa=document.querySelector('.section-panel:not([hidden])');document.querySelectorAll('.section-panel').forEach(function(p){p.removeAttribute('hidden');p.style.display='block';});var btn=document.querySelector('.pdf-export-btn');if(btn)btn.style.display='none';});
+window.addEventListener('afterprint',function(){if(_pa){document.querySelectorAll('.section-panel').forEach(function(p){if(p!==_pa)p.setAttribute('hidden','');});}_pa=null;var btn=document.querySelector('.pdf-export-btn');if(btn)btn.style.display='';});
+function exportPDF(){window.print();}
 </script>
 </body>
 </html>
